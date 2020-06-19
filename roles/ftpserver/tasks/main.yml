@@ -1,0 +1,8 @@
+---
+# tasks file for ftpserver
+- name: install vsftpd
+  yum: name=vsftpd state=installed
+- name: copy vsftpd
+  template: src=vsftpd.conf.j2  dest=/etc/vsftpd/vsftpd.conf
+- name: start vsftpd service
+  service: name=vsftpd state=started

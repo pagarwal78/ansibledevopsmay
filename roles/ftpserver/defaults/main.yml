@@ -1,0 +1,3 @@
+---
+# defaults file for ftpserver
+anonymous_enable: "NO" 

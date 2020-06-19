@@ -1,0 +1,23 @@
+---
+- hosts: '{{host}}' 
+  remote_user: test2000
+  become: yes
+  vars:
+       pkg: httpd
+  vars_prompt:
+       - name: pkg1
+         prompt: please enter package name
+         private: no 
+  vars_files:
+       - abc.yml
+  tasks:
+    - name: Install {{pkg}} package
+      yum: name={{pkg}} state=installed
+    - name: Install {{pkg1}} package
+      yum: name={{pkg1}} state=installed
+    - name: Install {{pkg2}} package
+      yum: name={{pkg2}} state=installed
+    - name: copy index.html
+      copy: src=index.html dest=/var/www/html
+    - name: start {{pkg}} service
+      service: name={{pkg}} state=started
